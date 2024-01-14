@@ -2,10 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local2="clr-namespace:RadioButtonCustom" 
                      xmlns:local="clr-namespace:RadioButtonCustom.CustomControl" >
-    <local2:BrushToColorConverter x:Key="Conv"></local2:BrushToColorConverter>
+    <!--<local2:BrushToColorConverter x:Key="Conv"></local2:BrushToColorConverter>
     <local2:SolidColorBrushToColorConverter x:Key="SolidColorBrushToColorConverter"></local2:SolidColorBrushToColorConverter>
 
-    <SolidColorBrush x:Key="PippleChecked" Color="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked)}"></SolidColorBrush>
+    <SolidColorBrush x:Key="PippleChecked" Color="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked)}"></SolidColorBrush>-->
     <Style TargetType="{x:Type local:RippleRadioButton_SelectedCircle}">
         <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
