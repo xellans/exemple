@@ -1,0 +1,8 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:RadioButtonCustom">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/RadioButtonCustom;component/CustomControl/RippleRadioButton_SelectedCircle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

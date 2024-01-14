@@ -12,6 +12,13 @@ namespace RadioButtonCustom.CustomControl
 {
     public class RippleRadioButton_SelectedCircle : RadioButton
     {
+        static RippleRadioButton_SelectedCircle()
+        {
+            DefaultStyleKeyProperty
+                .OverrideMetadata(typeof(RippleRadioButton_SelectedCircle),
+                                  new FrameworkPropertyMetadata(typeof(RippleRadioButton_SelectedCircle)));
+        }
+
         #region RippleChecked
         public Color RippleChecked
         {

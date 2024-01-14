@@ -8,7 +8,7 @@
 
     <SolidColorBrush x:Key="PippleChecked" Color="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked)}"></SolidColorBrush>
     <Style TargetType="{x:Type local:RippleRadioButton_SelectedCircle}">
-        <Setter Property="OverridesDefaultStyle" Value="False" />
+        <!--<Setter Property="OverridesDefaultStyle" Value="False" />-->
         <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
