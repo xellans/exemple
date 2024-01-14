@@ -35,14 +35,17 @@ namespace RadioButtonCustom.CustomControl
             {
                 throw new Exception("Только для IInputElement");
             }
-            if (e.OldValue == trueBox)
+            if (e.OldValue != e.NewValue)
             {
-                uie.MouseDown -= OnMouseDown;
-                uie.ClearValue(LastDownPositionPropertyKey);
-            }
-            if (e.NewValue == trueBox)
-            {
-                uie.MouseDown += OnMouseDown;
+                if (e.NewValue == trueBox)
+                {
+                    uie.MouseDown += OnMouseDown;
+                }
+                else
+                {
+                    uie.MouseDown -= OnMouseDown;
+                    uie.ClearValue(LastDownPositionPropertyKey);
+                }
             }
         }
 
@@ -66,8 +69,5 @@ namespace RadioButtonCustom.CustomControl
         public static readonly DependencyPropertyKey LastDownPositionPropertyKey =
             DependencyProperty.RegisterAttachedReadOnly("LastDownPosition", typeof(Point?), typeof(MouseHelper), new PropertyMetadata((Point?)null));
         public static readonly DependencyProperty LastDownPositionProperty = LastDownPositionPropertyKey.DependencyProperty;
-
-
-
     }
 }
