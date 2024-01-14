@@ -36,13 +36,15 @@ namespace RadioButtonCustom.CustomControl
             }
             if (e.OldValue != e.NewValue)
             {
-                if (e.NewValue == trueBox)
+                if (Equals(e.NewValue, trueBox))
                 {
-                    uie.MouseDown += OnMouseDown;
+                    uie.AddHandler(UIElement.MouseDownEvent, (MouseButtonEventHandler)OnMouseDown, true);
+                    //uie.MouseDown += OnMouseDown;
                 }
                 else
                 {
-                    uie.MouseDown -= OnMouseDown;
+                    uie.RemoveHandler(UIElement.MouseDownEvent, (MouseButtonEventHandler)OnMouseDown);
+                    //uie.MouseDown -= OnMouseDown;
                     uie.ClearValue(LastDownPositionPropertyKey);
                 }
             }
@@ -62,12 +64,13 @@ namespace RadioButtonCustom.CustomControl
 
         private static void SetLastDownPosition(UIElement uie, Point? value)
         {
-            uie.SetValue(LastDownPositionProperty, value);
+            uie.SetValue(LastDownPositionPropertyKey, value);
         }
 
         // Using a DependencyProperty as the backing store for DownPosition.  This enables animation, styling, binding, etc...
         public static readonly DependencyPropertyKey LastDownPositionPropertyKey =
             DependencyProperty.RegisterAttachedReadOnly("LastDownPosition", typeof(Point?), typeof(MouseHelper), new PropertyMetadata((Point?)null));
         public static readonly DependencyProperty LastDownPositionProperty = LastDownPositionPropertyKey.DependencyProperty;
+
     }
 }
