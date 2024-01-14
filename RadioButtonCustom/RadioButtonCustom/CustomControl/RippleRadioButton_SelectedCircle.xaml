@@ -84,10 +84,35 @@
                         </Grid.Tag>
                         <Grid.Triggers>
                             <EventTrigger RoutedEvent="RadioButton.Checked">
-                                <BeginStoryboard Storyboard="{StaticResource Checked}"  />
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!--Не работает эта привязка - Уже работает.-->
+                                        <ColorAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)" To="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked)}" Duration="0:0:0.5" />
+
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="12" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Height)">
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="12" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
                             </EventTrigger>
                             <EventTrigger RoutedEvent="RadioButton.Unchecked">
-                                <BeginStoryboard Storyboard="{StaticResource Unchecked}"  />
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)" To="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleUnChecked)}" Duration="0:0:0.8" />
+
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Height)">
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
                             </EventTrigger>
                         </Grid.Triggers>
                     </Grid>
