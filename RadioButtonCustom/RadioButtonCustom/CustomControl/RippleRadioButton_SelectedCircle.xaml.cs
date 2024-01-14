@@ -22,12 +22,9 @@ namespace RadioButtonCustom.CustomControl
         #region RippleChecked
         public Color RippleChecked
         {
-            get { return (Color)GetValue(RippleCheckedProperty); }
-            set { SetValue(RippleCheckedProperty, value); }
+            get => (Color)GetValue(RippleCheckedProperty);
+            set => SetValue(RippleCheckedProperty, value);
         }
-        public static Color GetRippleChecked(UIElement element) => (Color)element.GetValue(RippleCheckedProperty);
-
-        public static void SetRippleChecked(UIElement element, Color value) => element.SetValue(RippleCheckedProperty, value);
 
         public static readonly DependencyProperty RippleCheckedProperty =
             DependencyProperty.Register(nameof(RippleChecked), typeof(Color),
@@ -37,12 +34,9 @@ namespace RadioButtonCustom.CustomControl
         #region RippleUnChecked
         public Color RippleUnChecked
         {
-            get { return (Color)GetValue(RippleUnCheckedProperty); }
-            set { SetValue(RippleUnCheckedProperty, value); }
+            get => (Color)GetValue(RippleUnCheckedProperty);
+            set => SetValue(RippleUnCheckedProperty, value);
         }
-        public static Color GetRippleUnChecked(UIElement element) => (Color)element.GetValue(RippleUnCheckedProperty);
-
-        public static void SetRippleUnChecked(UIElement element, Color value) => element.SetValue(RippleUnCheckedProperty, value);
 
         public static readonly DependencyProperty RippleUnCheckedProperty =
             DependencyProperty.Register(nameof(RippleUnChecked), typeof(Color),
@@ -52,15 +46,12 @@ namespace RadioButtonCustom.CustomControl
         #region Ripple effect анимация
         public Brush RippleColor
         {
-            get { return (Brush)GetValue(RippleColorProperty); }
-            set { SetValue(RippleColorProperty, value); }
+            get => (Brush)GetValue(RippleColorProperty);
+            set => SetValue(RippleColorProperty, value);
         }
-        public static Brush GetRippleColor(UIElement element) => (Brush)element.GetValue(RippleColorProperty);
-
-        public static void SetRippleColor(UIElement element, Brush value) => element.SetValue(RippleColorProperty, value);
 
         public static readonly DependencyProperty RippleColorProperty =
-            DependencyProperty.Register("RippleColor", typeof(Brush),
+            DependencyProperty.Register(nameof(RippleColor), typeof(Brush),
                 typeof(RippleRadioButton_SelectedCircle), new PropertyMetadata(Brushes.White));
 
         public override void OnApplyTemplate()

@@ -82,7 +82,8 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="root"
                                                         Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)"
-                                                        To="{Binding RippleUnChecked, RelativeSource={RelativeSource Mode=TemplatedParent}}" Duration="0:0:0.8" />
+                                                        To="{Binding RippleUnChecked, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                        Duration="0:0:0.8" />
 
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
                                             <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
