@@ -30,9 +30,9 @@ namespace RadioButtonCustom.CustomControl
 
         private static void IsDownPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is  not UIElement uie || uie is not IInputElement)
+            if (d is not UIElement uie)
             {
-                throw new Exception("Только для UIElement приводимых к IInputElement");
+                throw new Exception("Только для UIElement.");
             }
             if (e.OldValue != e.NewValue)
             {
@@ -50,8 +50,9 @@ namespace RadioButtonCustom.CustomControl
 
         private static void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Point mousePos = e.GetPosition((IInputElement)sender);
-            SetLastDownPosition((UIElement)sender, mousePos);
+            UIElement uie = (UIElement)sender;
+            Point mousePos = e.GetPosition(uie);
+            SetLastDownPosition(uie, mousePos);
         }
 
         public static Point? GetLastDownPosition(UIElement uie)
