@@ -30,10 +30,9 @@ namespace RadioButtonCustom.CustomControl
 
         private static void IsDownPositionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            UIElement uie = (UIElement)d;
-            if (uie is not IInputElement)
+            if (d is  not UIElement uie || uie is not IInputElement)
             {
-                throw new Exception("Только для IInputElement");
+                throw new Exception("Только для UIElement приводимых к IInputElement");
             }
             if (e.OldValue != e.NewValue)
             {
