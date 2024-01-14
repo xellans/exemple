@@ -1,0 +1,25 @@
+﻿<Window x:Class="RadioButtonCustom.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RadioButtonCustom"
+        xmlns:comtrol="clr-namespace:RadioButtonCustom.CustomControl"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <StackPanel>
+                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0" Height="50">Text</comtrol:RippleRadioButton_SelectedCircle>
+                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0">Text</comtrol:RippleRadioButton_SelectedCircle>
+                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0">Text</comtrol:RippleRadioButton_SelectedCircle>
+                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0">Text</comtrol:RippleRadioButton_SelectedCircle>
+
+                <!--<RadioButton Style="{DynamicResource RadioButtonStyle1}" VerticalAlignment="Center" HorizontalAlignment="Center">Text</RadioButton>
+        <RadioButton Style="{DynamicResource RadioButtonStyle1}" VerticalAlignment="Center" HorizontalAlignment="Center">Text</RadioButton>
+        <RadioButton Style="{DynamicResource RadioButtonStyle1}" VerticalAlignment="Center" HorizontalAlignment="Center">Text</RadioButton>-->
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Window>
