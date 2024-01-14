@@ -121,6 +121,5 @@ namespace RadioButtonCustom.CustomControl
         }
         public static ConditionalWeakTable<UIElement, RoutedEventHandler> CheckedHandlers = new();
         #endregion
-
     }
 }
