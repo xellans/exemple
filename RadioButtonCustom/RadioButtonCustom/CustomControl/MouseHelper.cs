@@ -34,7 +34,7 @@ namespace RadioButtonCustom.CustomControl
             {
                 throw new Exception("Только для UIElement.");
             }
-            if (e.OldValue != e.NewValue)
+            if (!Equals(e.OldValue, e.NewValue))
             {
                 if (Equals(e.NewValue, trueBox))
                 {
@@ -55,6 +55,7 @@ namespace RadioButtonCustom.CustomControl
             UIElement uie = (UIElement)sender;
             Point mousePos = e.GetPosition(uie);
             SetLastDownPosition(uie, mousePos);
+            uie.RaiseEvent(new PositionRoutedEventArgs(LastMouseDownEvent, mousePos));
         }
 
         public static Point? GetLastDownPosition(UIElement uie)
@@ -72,5 +73,48 @@ namespace RadioButtonCustom.CustomControl
             DependencyProperty.RegisterAttachedReadOnly("LastDownPosition", typeof(Point?), typeof(MouseHelper), new PropertyMetadata((Point?)null));
         public static readonly DependencyProperty LastDownPositionProperty = LastDownPositionPropertyKey.DependencyProperty;
 
+        #region Присоединённое событие LastMouseDown.
+        //Извещает о изменении LastDownPosition. Нужно из-за того,  что MouseDown может быть отменён дочерними элементами.
+
+        // Register a custom routed event using the bubble routing strategy.
+        public static readonly RoutedEvent LastMouseDownEvent = EventManager.RegisterRoutedEvent(
+            "LastMouseDown", RoutingStrategy.Bubble, typeof(PositionRoutedEventHandler), typeof(MouseHelper));
+
+
+        // Provide an add handler accessor method for the Clean event.
+        public static void AddLastMouseDownHandler(DependencyObject dependencyObject, PositionRoutedEventHandler handler)
+        {
+            if (dependencyObject is not UIElement uiElement)
+                return;
+
+            uiElement.AddHandler(LastMouseDownEvent, handler);
+        }
+
+        // Provide a remove handler accessor method for the Clean event.
+        public static void RemoveLastMouseDownHandler(DependencyObject dependencyObject, PositionRoutedEventHandler handler)
+        {
+            if (dependencyObject is not UIElement uiElement)
+                return;
+
+            uiElement.RemoveHandler(LastMouseDownEvent, handler);
+        }
+        #endregion
     }
+
+    public class PositionRoutedEventArgs : RoutedEventArgs
+    {
+        public PositionRoutedEventArgs(Point? position)
+            => Position = position;
+
+        public PositionRoutedEventArgs(RoutedEvent routedEvent, Point? position)
+            : base(routedEvent)
+            => Position = position;
+
+        public PositionRoutedEventArgs(RoutedEvent routedEvent, object source, Point? position)
+            : base(routedEvent, source)
+            => Position = position;
+        public Point? Position { get; }
+    }
+
+    public delegate void PositionRoutedEventHandler (object sender, PositionRoutedEventArgs e);
 }

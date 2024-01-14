@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local2="clr-namespace:RadioButtonCustom" 
-                     xmlns:local="clr-namespace:RadioButtonCustom.CustomControl" 
-                    xmlns:system="clr-namespace:System;assembly=netstandard">
+                     xmlns:local="clr-namespace:RadioButtonCustom.CustomControl" >
     <local2:BrushToColorConverter x:Key="Conv"></local2:BrushToColorConverter>
     <local2:SolidColorBrushToColorConverter x:Key="SolidColorBrushToColorConverter"></local2:SolidColorBrushToColorConverter>
 
@@ -21,7 +20,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:RippleRadioButton_SelectedCircle}">
                     <ControlTemplate.Resources>
-                        <Storyboard x:Key="RippleAnimation" Storyboard.TargetName="CircleEffect">
+                        <!--<Storyboard x:Key="RippleAnimation" Storyboard.TargetName="CircleEffect">
                             <DoubleAnimation Storyboard.TargetProperty="Width"
 											 To="0" Duration="0:0:0"/>
                             <DoubleAnimation Storyboard.TargetProperty="Opacity"
@@ -32,66 +31,114 @@
 											 BeginTime="0:0:0" Duration="0:0:0.8" From="0" />
                             <DoubleAnimation Storyboard.TargetProperty="Opacity" 
 											 BeginTime="0:0:0.2" Duration="0:0:0.6"  From=".5" To="0" />
-                        </Storyboard>
+                        </Storyboard>-->
+                        <Point x:Key="zero">0 0</Point>
                     </ControlTemplate.Resources>
-                    <Grid x:Name="templateRoot" ClipToBounds="True" Background="Transparent" 
-                           local:RippleRadioButton_SelectedCircle.ParentToggleButton="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}}">
+                    <Grid x:Name="templateRoot" ClipToBounds="True" Background="{TemplateBinding Background}" 
+                          local:MouseHelper.IsDownPosition="True"
+                          local:ToggleButtonHelper.ButtonSource="{Binding RelativeSource={RelativeSource TemplatedParent}}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <!--Ripple Effect Body-->
-                        <Ellipse x:Name="CircleEffect"
+                        <Path x:Name="ripplePath"
+                              Fill="{Binding RippleColor, RelativeSource={RelativeSource TemplatedParent}}"
+                              Grid.ColumnSpan="100"
+                              Grid.RowSpan="100">
+                            <Path.Data>
+                                <EllipseGeometry x:Name="rippleEllipse"
+                                                 Center="{Binding Path=(local:MouseHelper.LastDownPosition), ElementName=templateRoot, TargetNullValue={StaticResource zero}}"
+                                                 RadiusY="{Binding RadiusX, RelativeSource={RelativeSource Self}}"/>
+                            </Path.Data>
+                        </Path>
+                        <!--<Grid Width="0" Height="0"
+                              ClipToBounds="True">
+                            <Grid.RenderTransform>
+                                <TranslateTransform
+                                    X="{Binding Path=(local:MouseHelper.LastDownPosition).X, ElementName=templateRoot}"
+                                    Y="{Binding Path=(local:MouseHelper.LastDownPosition).Y, ElementName=templateRoot}"/>
+                            </Grid.RenderTransform>
+                            <Border Background="Aqua" Width="50" Height="40"/>
+                            <Ellipse x:Name="CircleEffect"
                                              Grid.ColumnSpan="30"
                                              Grid.RowSpan="30"
-                                             HorizontalAlignment="Left"
-                                             VerticalAlignment="Top"
+                                             HorizontalAlignment="Center"
+                                             VerticalAlignment="Center"
                                              Opacity="0.5"
                                              Width="0"
                                              Panel.ZIndex="0"
                                              Height="{Binding Path=Width, RelativeSource={RelativeSource Self}}"
-                                             Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleColor)}"/>
-                        <Ellipse x:Name="root" Fill="{TemplateBinding Background}" Stroke="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleUnChecked), Converter={StaticResource Conv}}" 
-                                 Height="25" Width="25"  StrokeThickness="2"/>
-                        <Ellipse x:Name="slider" Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked), Converter={StaticResource Conv}}" Height="0" Width="0" RenderTransformOrigin="0.5,0.5"/>
+                                             Fill="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleColor)}">
+                            </Ellipse>
+                        </Grid>-->
+                        <Ellipse x:Name="root" Fill="{TemplateBinding Background}"
+                                 Width="25"  StrokeThickness="2"
+                                 Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}">
+                            <Ellipse.Stroke>
+                                <SolidColorBrush x:Name="rootStroke"  Color="{Binding RippleUnChecked, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </Ellipse.Stroke>
+                        </Ellipse>
+                        <Ellipse x:Name="slider"
+                                 Width="0"
+                                 Height="{Binding ActualWidth, RelativeSource={RelativeSource Self}}"
+                                 RenderTransformOrigin="0.5,0.5"
+                                 Fill="{Binding Stroke, ElementName=root}">
+                        </Ellipse>
+                                 
                         <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                        <Grid.Tag>
+                        <!--<Grid.Tag>
                             <system:Double>0.0</system:Double>
-                        </Grid.Tag>
+                        </Grid.Tag>-->
                         <Grid.Triggers>
-                            <EventTrigger RoutedEvent="RadioButton.Checked">
+                            <EventTrigger RoutedEvent="local:ToggleButtonHelper.ToggleButtonChecked">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="root"
-                                                        Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)"
+                                        <ColorAnimation Storyboard.TargetName="rootStroke"
+                                                        Storyboard.TargetProperty="Color"
                                                         To="{Binding RippleChecked, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                         Duration="0:0:0.5" />
 
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
-                                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="12" />
-                                        </DoubleAnimationUsingKeyFrames>
-
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Height)">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider"
+                                                                       Storyboard.TargetProperty="Width">
                                             <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="12" />
                                         </DoubleAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
-                            <EventTrigger RoutedEvent="RadioButton.Unchecked">
+                            <EventTrigger RoutedEvent="local:ToggleButtonHelper.ToggleButtonUnchecked">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="root"
-                                                        Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)"
+                                        <ColorAnimation Storyboard.TargetName="rootStroke"
+                                                        Storyboard.TargetProperty="Color"
                                                         To="{Binding RippleUnChecked, RelativeSource={RelativeSource Mode=TemplatedParent}}"
                                                         Duration="0:0:0.8" />
 
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider"
+                                                                       Storyboard.TargetProperty="Width">
                                             <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
                                         </DoubleAnimationUsingKeyFrames>
-
-                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Height)">
-                                            <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="local:MouseHelper.LastMouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!--<DoubleAnimation Storyboard.TargetName="rippleEllipse"
+                                                         Storyboard.TargetProperty="RadiusX"
+                                                         To="0" Duration="0:0:0"/>
+                                        <DoubleAnimation Storyboard.TargetName="ripplePath"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         To=".5" Duration="0:0:0"/>-->
+                                        <!--<ThicknessAnimation Storyboard.TargetProperty="Margin" 
+												Duration="0:0:0.8" FillBehavior="HoldEnd"/>-->
+                                        <DoubleAnimation Storyboard.TargetName="rippleEllipse"
+                                                         Storyboard.TargetProperty="RadiusX"
+                                                         BeginTime="0:0:0" Duration="0:0:0.8" From="0"
+                                                         To="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                        <DoubleAnimation Storyboard.TargetName="ripplePath"
+                                                         Storyboard.TargetProperty="Opacity"
+                                                         BeginTime="0:0:0.0" Duration="0:0:0.6" From=".5" To="0" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>

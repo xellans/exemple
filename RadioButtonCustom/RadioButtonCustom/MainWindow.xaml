@@ -4,21 +4,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RadioButtonCustom"
-        xmlns:comtrol="clr-namespace:RadioButtonCustom.CustomControl"
+        xmlns:controls="clr-namespace:RadioButtonCustom.CustomControl"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="mainGrid" comtrol:MouseHelper.IsDownPosition="True" Background="AliceBlue">
+    <Window.Resources>
+        <Style TargetType="controls:RippleRadioButton_SelectedCircle">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="10 0 0 0"/>
+            <Setter Property="Content" Value="Some Text"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="mainGrid" controls:MouseHelper.IsDownPosition="True" Background="AliceBlue">
         <Grid>
             <StackPanel>
-                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0" Height="50">Text</comtrol:RippleRadioButton_SelectedCircle>
-                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0">Text</comtrol:RippleRadioButton_SelectedCircle>
-                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0">Text</comtrol:RippleRadioButton_SelectedCircle>
-                <comtrol:RippleRadioButton_SelectedCircle FontSize="18" Padding="10 0 0 0">Text</comtrol:RippleRadioButton_SelectedCircle>
+                <controls:RippleRadioButton_SelectedCircle/>
+                <controls:RippleRadioButton_SelectedCircle/>
+                <controls:RippleRadioButton_SelectedCircle/>
+                <controls:RippleRadioButton_SelectedCircle/>
+
+                <controls:RippleRadioButton_SelectedCircle
+                    Content="Other text">
+                    <Control.Template>
+                        <ControlTemplate TargetType="controls:RippleRadioButton_SelectedCircle">
+                            <TextBlock Text="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Background="LightGreen"/>
+                        </ControlTemplate>
+                    </Control.Template>
+                </controls:RippleRadioButton_SelectedCircle>
 
                 <!--<RadioButton Style="{DynamicResource RadioButtonStyle1}" VerticalAlignment="Center" HorizontalAlignment="Center">Text</RadioButton>
         <RadioButton Style="{DynamicResource RadioButtonStyle1}" VerticalAlignment="Center" HorizontalAlignment="Center">Text</RadioButton>
         <RadioButton Style="{DynamicResource RadioButtonStyle1}" VerticalAlignment="Center" HorizontalAlignment="Center">Text</RadioButton>-->
-                <TextBlock Text="{Binding Path=(comtrol:MouseHelper.LastDownPosition), ElementName=mainGrid}"/>
+                <TextBlock Text="{Binding Path=(controls:MouseHelper.LastDownPosition), ElementName=mainGrid}"/>
+                <RadioButton Height="20" Width="100">
+                    <RadioButton.Template>
+                        <ControlTemplate TargetType="RadioButton">
+                            <TextBlock Text="{Binding IsChecked, RelativeSource={RelativeSource TemplatedParent}}" Background="LightGreen"/>
+                        </ControlTemplate>
+                    </RadioButton.Template>
+                </RadioButton>
+                <RadioButton/>
             </StackPanel>
 
         </Grid>
