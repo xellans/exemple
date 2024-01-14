@@ -8,7 +8,6 @@
 
     <SolidColorBrush x:Key="PippleChecked" Color="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked)}"></SolidColorBrush>
     <Style TargetType="{x:Type local:RippleRadioButton_SelectedCircle}">
-        <!--<Setter Property="OverridesDefaultStyle" Value="False" />-->
         <Setter Property="FocusVisualStyle" Value="{x:Null}"></Setter>
         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
@@ -20,7 +19,7 @@
         <Setter Property="Height" Value="50"/>
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type RadioButton}">
+                <ControlTemplate TargetType="{x:Type local:RippleRadioButton_SelectedCircle}">
                     <ControlTemplate.Resources>
                         <Storyboard x:Key="RippleAnimation" Storyboard.TargetName="CircleEffect">
                             <DoubleAnimation Storyboard.TargetProperty="Width"
@@ -33,29 +32,6 @@
 											 BeginTime="0:0:0" Duration="0:0:0.8" From="0" />
                             <DoubleAnimation Storyboard.TargetProperty="Opacity" 
 											 BeginTime="0:0:0.2" Duration="0:0:0.6"  From=".5" To="0" />
-                        </Storyboard>
-                        <Storyboard x:Key="Checked" Storyboard.TargetName="root">
-                            <!--Не работает эта привязка-->
-                            <ColorAnimation Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)" To="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked)}" Duration="0:0:0.5" />
-
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="12" />
-                            </DoubleAnimationUsingKeyFrames>
-
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Height)">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="12" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                        <Storyboard x:Key="Unchecked" Storyboard.TargetName="root">
-                            <!--<ColorAnimation Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)" To="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleUnChecked)}" Duration="0:0:0.8" />-->
-
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
-
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Height)">
-                                <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </ControlTemplate.Resources>
                     <Grid x:Name="templateRoot" ClipToBounds="True" Background="Transparent" 
@@ -86,8 +62,10 @@
                             <EventTrigger RoutedEvent="RadioButton.Checked">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <!--Не работает эта привязка - Уже работает.-->
-                                        <ColorAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)" To="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleChecked)}" Duration="0:0:0.5" />
+                                        <ColorAnimation Storyboard.TargetName="root"
+                                                        Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)"
+                                                        To="{Binding RippleChecked, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                        Duration="0:0:0.5" />
 
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
                                             <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="12" />
@@ -102,7 +80,9 @@
                             <EventTrigger RoutedEvent="RadioButton.Unchecked">
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetName="root" Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)" To="{Binding RelativeSource={RelativeSource AncestorType=RadioButton}, Path=(local:RippleRadioButton_SelectedCircle.RippleUnChecked)}" Duration="0:0:0.8" />
+                                        <ColorAnimation Storyboard.TargetName="root"
+                                                        Storyboard.TargetProperty="(Ellipse.Stroke).(SolidColorBrush.Color)"
+                                                        To="{Binding RippleUnChecked, RelativeSource={RelativeSource Mode=TemplatedParent}}" Duration="0:0:0.8" />
 
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetName="slider" Storyboard.TargetProperty="(Ellipse.Width)">
                                             <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="0" />
