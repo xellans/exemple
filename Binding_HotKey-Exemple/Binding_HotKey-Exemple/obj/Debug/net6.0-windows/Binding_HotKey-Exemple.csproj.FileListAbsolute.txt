@@ -1,0 +1,17 @@
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\bin\Debug\net6.0-windows\Binding_HotKey-Exemple.exe
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\bin\Debug\net6.0-windows\Binding_HotKey-Exemple.deps.json
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\bin\Debug\net6.0-windows\Binding_HotKey-Exemple.runtimeconfig.json
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\bin\Debug\net6.0-windows\Binding_HotKey-Exemple.dll
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\bin\Debug\net6.0-windows\Binding_HotKey-Exemple.pdb
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey_Exemple.BindingHotkeyForm.resources
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey_Exemple.Form1.resources
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.csproj.GenerateResource.cache
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.AssemblyInfoInputs.cache
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.AssemblyInfo.cs
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.csproj.CoreCompileInputs.cache
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.dll
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\refint\Binding_HotKey-Exemple.dll
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.pdb
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\Binding_HotKey-Exemple.genruntimeconfig.cache
+D:\Project\Visul studio\.Exemple\Binding_HotKey-Exemple\Binding_HotKey-Exemple\obj\Debug\net6.0-windows\ref\Binding_HotKey-Exemple.dll

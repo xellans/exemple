@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Binding_HotKey-Exemple/1.0.0": {
+        "runtime": {
+          "Binding_HotKey-Exemple.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Binding_HotKey-Exemple/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
